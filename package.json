@@ -26,6 +26,8 @@
   "type": "module",
   "types": "dist/index.d.ts",
   "dependencies": {
-    "webextension-polyfill": "^0.10.0"
+    "webextension-polyfill": "^0.10.0",
+    "weeg-events": "^0.1.0",
+    "weeg-types": "^0.1.0"
   }
 }

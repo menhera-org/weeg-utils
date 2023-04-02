@@ -17,13 +17,10 @@
   @license
 */
 
-export { assertTopLevel } from './assert-toplevel';
-export { ExtensionService } from './ExtensionService';
-export { MessagingService, MessageListener } from './MessagingService';
+import { ExtensibleAttributeSet } from "./ExtensibleAttributeSet";
 
-export { Alarm, AlarmSchedule } from './Alarm/Alarm';
+export interface ExtensibleAttributeProvider<T> {
+  getAttributeSets(targets: Iterable<T>): Promise<ExtensibleAttributeSet<T>[]>;
 
-export { ExtensibleAttribute } from './ExtensibleAttribute/ExtensibleAttribute';
-export { ExtensibleAttributeDictionary } from './ExtensibleAttribute/ExtensibleAttributeDIctionary';
-export { ExtensibleAttributeProvider } from './ExtensibleAttribute/ExtensibleAttributeProvider';
-export { ExtensibleAttributeSet } from './ExtensibleAttribute/ExtensibleAttributeSet';
+  saveAttributeSets(attributeSets: Iterable<ExtensibleAttributeSet<T>>): Promise<void>;
+}

@@ -17,13 +17,20 @@
   @license
 */
 
-export { assertTopLevel } from './assert-toplevel';
-export { ExtensionService } from './ExtensionService';
-export { MessagingService, MessageListener } from './MessagingService';
+import { ExtensibleAttributeDictionary } from "./ExtensibleAttributeDIctionary";
 
-export { Alarm, AlarmSchedule } from './Alarm/Alarm';
+export class ExtensibleAttribute<T> {
+  public readonly key: string;
 
-export { ExtensibleAttribute } from './ExtensibleAttribute/ExtensibleAttribute';
-export { ExtensibleAttributeDictionary } from './ExtensibleAttribute/ExtensibleAttributeDIctionary';
-export { ExtensibleAttributeProvider } from './ExtensibleAttribute/ExtensibleAttributeProvider';
-export { ExtensibleAttributeSet } from './ExtensibleAttribute/ExtensibleAttributeSet';
+  public constructor(key: string) {
+    this.key = key;
+  }
+
+  public getValue(dictionary: ExtensibleAttributeDictionary): T | undefined {
+    return dictionary[this.key] as T;
+  }
+
+  public setValue(dictionary: ExtensibleAttributeDictionary, value: T): void {
+    dictionary[this.key] = value;
+  }
+}

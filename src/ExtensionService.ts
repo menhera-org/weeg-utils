@@ -17,13 +17,29 @@
   @license
 */
 
-export { assertTopLevel } from './assert-toplevel';
-export { ExtensionService } from './ExtensionService';
-export { MessagingService, MessageListener } from './MessagingService';
+import browser from 'webextension-polyfill';
 
-export { Alarm, AlarmSchedule } from './Alarm/Alarm';
+export class ExtensionService {
+  private static readonly INSTANCE = new ExtensionService();
 
-export { ExtensibleAttribute } from './ExtensibleAttribute/ExtensibleAttribute';
-export { ExtensibleAttributeDictionary } from './ExtensibleAttribute/ExtensibleAttributeDIctionary';
-export { ExtensibleAttributeProvider } from './ExtensibleAttribute/ExtensibleAttributeProvider';
-export { ExtensibleAttributeSet } from './ExtensibleAttribute/ExtensibleAttributeSet';
+  public static getInstance() {
+    return ExtensionService.INSTANCE;
+  }
+
+  private constructor() {
+    // nothing.
+  }
+
+  public getInternalUuid(): string {
+    return new URL(browser.runtime.getURL('/')).hostname;
+  }
+
+  public getVersion(): string {
+    return browser.runtime.getManifest().version;
+  }
+
+  public async isAllowedInPrivateBrowsing(): Promise<boolean> {
+    const allowed = await browser.extension.isAllowedIncognitoAccess();
+    return allowed;
+  }
+}

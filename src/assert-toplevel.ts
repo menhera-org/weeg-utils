@@ -17,13 +17,13 @@
   @license
 */
 
-export { assertTopLevel } from './assert-toplevel';
-export { ExtensionService } from './ExtensionService';
-export { MessagingService, MessageListener } from './MessagingService';
+// https://discourse.mozilla.org/t/mv3-can-addlistener-be-inside-a-function/112834/4?u=metastable
 
-export { Alarm, AlarmSchedule } from './Alarm/Alarm';
+// top level starts as TRUE and is set to FALSE the moment current loop finishes.
+let isTopLevel = true;
+Promise.resolve().then(() => isTopLevel = false);
 
-export { ExtensibleAttribute } from './ExtensibleAttribute/ExtensibleAttribute';
-export { ExtensibleAttributeDictionary } from './ExtensibleAttribute/ExtensibleAttributeDIctionary';
-export { ExtensibleAttributeProvider } from './ExtensibleAttribute/ExtensibleAttributeProvider';
-export { ExtensibleAttributeSet } from './ExtensibleAttribute/ExtensibleAttributeSet';
+// throws if executed later on - this helps with Manifest V3 migration!
+export function assertTopLevel() {
+  if (!isTopLevel) throw Error('WARNING: this is not a top level event loop');
+}

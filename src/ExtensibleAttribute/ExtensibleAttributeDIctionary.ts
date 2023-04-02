@@ -17,13 +17,6 @@
   @license
 */
 
-export { assertTopLevel } from './assert-toplevel';
-export { ExtensionService } from './ExtensionService';
-export { MessagingService, MessageListener } from './MessagingService';
-
-export { Alarm, AlarmSchedule } from './Alarm/Alarm';
-
-export { ExtensibleAttribute } from './ExtensibleAttribute/ExtensibleAttribute';
-export { ExtensibleAttributeDictionary } from './ExtensibleAttribute/ExtensibleAttributeDIctionary';
-export { ExtensibleAttributeProvider } from './ExtensibleAttribute/ExtensibleAttributeProvider';
-export { ExtensibleAttributeSet } from './ExtensibleAttribute/ExtensibleAttributeSet';
+export type ExtensibleAttributeDictionary = {
+  [key: string]: unknown;
+};
