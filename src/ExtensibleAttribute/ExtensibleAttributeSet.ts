@@ -22,18 +22,22 @@ import { ExtensibleAttribute } from "./ExtensibleAttribute";
 
 export class ExtensibleAttributeSet<T> {
   public readonly target: T;
-  private readonly attributesDictionary: ExtensibleAttributeDictionary;
+  private readonly attributeDictionary: ExtensibleAttributeDictionary;
 
   public constructor(target: T, attributesDictionary: ExtensibleAttributeDictionary) {
     this.target = target;
-    this.attributesDictionary = attributesDictionary;
+    this.attributeDictionary = attributesDictionary;
   }
 
   public getAttribute<S>(attribute: ExtensibleAttribute<S>): S | undefined {
-    return attribute.getValue(this.attributesDictionary);
+    return attribute.getValue(this.attributeDictionary);
   }
 
   public setAttribute<S>(attribute: ExtensibleAttribute<S>, value: S): void {
-    attribute.setValue(this.attributesDictionary, value);
+    attribute.setValue(this.attributeDictionary, value);
+  }
+
+  public getAttributeDictionary(): ExtensibleAttributeDictionary {
+    return structuredClone(this.attributeDictionary);
   }
 }
