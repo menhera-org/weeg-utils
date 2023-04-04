@@ -42,4 +42,9 @@ export class ExtensionService {
     const allowed = await browser.extension.isAllowedIncognitoAccess();
     return allowed;
   }
+
+  public isBackgroundPage(): boolean {
+    // This returns null on private browsing mode. But in non-split setup, background page is not private browsing mode.
+    return browser.extension.getBackgroundPage() === window;
+  }
 }
