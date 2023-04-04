@@ -22,6 +22,7 @@ export { ExtensionService } from './ExtensionService';
 export { MessagingService, MessageListener } from './MessagingService';
 
 export { Alarm, AlarmSchedule } from './Alarm/Alarm';
+export { PromiseUtils } from './PromiseUtils';
 
 export { ExtensibleAttribute } from './ExtensibleAttribute/ExtensibleAttribute';
 export { ExtensibleAttributeDictionary } from './ExtensibleAttribute/ExtensibleAttributeDIctionary';
