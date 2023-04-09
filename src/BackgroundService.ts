@@ -26,7 +26,7 @@ export abstract class BackgroundService<Input, Output> {
   private static readonly MESSAGING_SERVICE = MessagingService.getInstance();
   private static readonly INSTANCE_MAP = new WeakMap<typeof BackgroundService, BackgroundService<unknown, unknown>>();
 
-  public readonly KEY = `weeg.backgroundService.${this.constructor.name}`;
+  public readonly KEY = `weeg.backgroundService.${this.getServiceName()}`;
 
   public static getInstance<T extends BackgroundService<unknown, unknown>>(): T {
     if (this === BackgroundService) {
@@ -46,6 +46,8 @@ export abstract class BackgroundService<Input, Output> {
       });
     }
   }
+
+  public abstract getServiceName(): string;
 
   protected abstract initializeBackground(): void;
 
