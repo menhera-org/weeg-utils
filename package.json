@@ -1,6 +1,6 @@
 {
   "name": "weeg-utils",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "WebExtensions Experts Groups utils library",
   "main": "dist/index.js",
   "scripts": {
@@ -26,7 +26,8 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "webextension-polyfill": "^0.10.0",
-    "weeg-events": "^0.3.0",
+    "weeg-events": "^0.4.0",
     "weeg-types": "^0.2.0"
   }
 }
+

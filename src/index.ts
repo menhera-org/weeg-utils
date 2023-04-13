@@ -29,3 +29,5 @@ export { ExtensibleAttribute } from './ExtensibleAttribute/ExtensibleAttribute';
 export { ExtensibleAttributeDictionary } from './ExtensibleAttribute/ExtensibleAttributeDIctionary';
 export { ExtensibleAttributeProvider } from './ExtensibleAttribute/ExtensibleAttributeProvider';
 export { ExtensibleAttributeSet } from './ExtensibleAttribute/ExtensibleAttributeSet';
+
+export { ViewRefreshHandler } from './ViewRefreshHandler';
