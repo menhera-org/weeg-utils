@@ -31,3 +31,5 @@ export { ExtensibleAttributeProvider } from './ExtensibleAttribute/ExtensibleAtt
 export { ExtensibleAttributeSet } from './ExtensibleAttribute/ExtensibleAttributeSet';
 
 export { ViewRefreshHandler } from './ViewRefreshHandler';
+
+export { Asserts } from './Asserts';
