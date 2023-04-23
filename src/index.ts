@@ -18,12 +18,14 @@
 */
 
 export { assertTopLevel } from './assert-toplevel';
+export { Asserts } from './Asserts';
+
 export { ExtensionService } from './ExtensionService';
 export { MessagingService, MessageListener } from './MessagingService';
+export { BackgroundService } from './BackgroundService';
 
 export { Alarm, AlarmSchedule } from './Alarm/Alarm';
 export { PromiseUtils } from './PromiseUtils';
-export { BackgroundService } from './BackgroundService';
 
 export { ExtensibleAttribute } from './ExtensibleAttribute/ExtensibleAttribute';
 export { ExtensibleAttributeDictionary } from './ExtensibleAttribute/ExtensibleAttributeDIctionary';
@@ -31,5 +33,3 @@ export { ExtensibleAttributeProvider } from './ExtensibleAttribute/ExtensibleAtt
 export { ExtensibleAttributeSet } from './ExtensibleAttribute/ExtensibleAttributeSet';
 
 export { ViewRefreshHandler } from './ViewRefreshHandler';
-
-export { Asserts } from './Asserts';

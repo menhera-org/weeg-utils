@@ -55,7 +55,7 @@ export class MessagingService {
       return;
     }
     const result = await Promise.race(promises);
-    console.debug('MessagingService.onMessage', type, message, sender, result);
+    // console.debug('MessagingService.onMessage', type, message, sender, result);
     sendResponse(result);
     return result;
   }
