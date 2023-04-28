@@ -1,6 +1,6 @@
 {
   "name": "weeg-utils",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "WebExtensions Experts Groups utils library",
   "main": "dist/index.js",
   "scripts": {
@@ -23,6 +23,7 @@
     "@types/webextension-polyfill": "^0.10.0",
     "typescript": "^5.0.3"
   },
+  "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
     "webextension-polyfill": "^0.10.0",
