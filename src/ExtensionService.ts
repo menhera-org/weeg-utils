@@ -44,6 +44,9 @@ export class ExtensionService {
   }
 
   public isBackgroundPage(): boolean {
+    if (!browser.extension?.getBackgroundPage) {
+      return false; // content scripts
+    }
     // This returns null on private browsing mode. But in non-split setup, background page is not private browsing mode.
     return browser.extension.getBackgroundPage() === window;
   }
