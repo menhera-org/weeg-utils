@@ -1,6 +1,6 @@
 {
   "name": "weeg-utils",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "WebExtensions Experts Groups utils library",
   "main": "dist/index.js",
   "scripts": {
@@ -31,4 +31,3 @@
     "weeg-types": "^0.4.0"
   }
 }
-

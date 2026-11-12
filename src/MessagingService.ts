@@ -32,32 +32,38 @@ export class MessagingService {
   private readonly _setMap = new SetMap<string, MessageListener>();
 
   private constructor() {
-    browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-      this.onMessage(message, sender, sendResponse).catch((e) => {
-        console.error(e);
-      });
-      return true;
-    });
+    browser.runtime.onMessage.addListener((message, sender) => this.onMessage(message, sender));
   }
 
-  private async onMessage(message: unknown, sender: browser.Runtime.MessageSender, sendResponse: (response: unknown) => void): Promise<unknown> {
+  /**
+   * Returns a promise of the first answer when a listener answers the message, and undefined otherwise.
+   * Promising an answer that never comes makes the browser keep the message until the sender's page closes.
+   */
+  private onMessage(message: unknown, sender: browser.Runtime.MessageSender): Promise<unknown> | undefined {
     if (null == message || typeof message !== 'object' || !('type' in message) || typeof message.type !== 'string') {
-      return;
+      return undefined;
     }
     const { type } = message;
     const listeners = this._setMap.get(type);
     if (null == listeners || listeners.size < 1) {
-      return;
+      return undefined;
     }
     const payload = ('payload' in message) ? message.payload : undefined;
-    const promises = [... listeners].map(listener => listener(payload, sender)).filter(promise => null != promise) as Promise<unknown>[];
-    if (0 === promises.length) {
-      return;
+    const promises: Promise<unknown>[] = [];
+    for (const listener of listeners) {
+      try {
+        const promise = listener(payload, sender);
+        if (null != promise) {
+          promises.push(promise);
+        }
+      } catch (e) {
+        promises.push(Promise.reject(e));
+      }
     }
-    const result = await Promise.race(promises);
-    // console.debug('MessagingService.onMessage', type, message, sender, result);
-    sendResponse(result);
-    return result;
+    if (0 === promises.length) {
+      return undefined;
+    }
+    return Promise.race(promises);
   }
 
   public addListener(type: string, listener: MessageListener): void {
