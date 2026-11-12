@@ -41,7 +41,11 @@ export abstract class BackgroundService<Input, Output> {
     if (BackgroundService.EXTENSION_SERVICE.isBackgroundPage()) {
       assertTopLevel();
       this.initializeBackground();
-      BackgroundService.MESSAGING_SERVICE.addListener(this.KEY, async (input) => {
+      BackgroundService.MESSAGING_SERVICE.addListener(this.KEY, async (input, sender) => {
+        // Content scripts share a process with web pages, so only the extension's own pages may call a service.
+        if (!sender.url?.startsWith(location.origin + '/')) {
+          throw new Error('Forbidden sender');
+        }
         return await this.execute(input as Input);
       });
     }

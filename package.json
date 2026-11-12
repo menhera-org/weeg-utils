@@ -1,10 +1,10 @@
 {
   "name": "weeg-utils",
-  "version": "0.11.1",
+  "version": "0.11.2",
   "description": "WebExtensions Experts Groups utils library",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc && node test/sender-check.js"
   },
   "repository": {
     "type": "git",
